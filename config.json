@@ -1,5 +1,5 @@
 {
-	"port": "8081",
-	"logfile": "c:\\Users\\leima\\gin.log",
+	"port": "8080",
+	"logfile": "/var/log/gin-access.log",
 	"loglevel": "ERROR"
 }
