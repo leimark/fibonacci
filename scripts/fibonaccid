@@ -11,7 +11,7 @@ prog="/usr/local/bin/fibonacci"
 log="/var/log/fibonacci.log"
 
 start() {
-	nohup $prog > $log 2>&1 & 
+	nohup $prog >> $log 2>&1 & 
 }
 
 stop() {
