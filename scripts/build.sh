@@ -1,7 +1,8 @@
 #!/bin/bash
 if [ $# -lt 2 ]; then
   echo "Use: build.sh source_dir git_repo"
-  echo "Sample: build.sh /home/leima/source git@github.com:leimark/test.git" 
+  echo "Sample: build.sh /home/my/source git@github.com:leimark/test.git"
+  echo "Or: build.sh /home/my/source https://github.com/leimark/fibonacci.git"
   exit 1
 fi
 
@@ -27,4 +28,4 @@ fi
 go build main.go
 
 #Run the unit test
-#go test -v main.go main_test.go
+go test -v main.go main_test.go
