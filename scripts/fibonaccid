@@ -1,0 +1,55 @@
+#!/bin/bash
+# chkconfig:- 80 80
+# Init file for Fibonacci service daemon
+#
+# Description: Fibonacci service deamon 
+#
+# processname: fibonaccid
+
+servicename="fibonacci"
+prog="/usr/local/bin/fibonacci"
+log="/var/log/fibonacci.log"
+
+start() {
+	nohup $prog > $log 2>&1 & 
+}
+
+stop() {
+
+	ps -ef |grep $prog |grep -v "grep" |awk '{print $2}'|xargs kill -9	
+	#pgrep $prog |xargs kill -s 9
+}
+
+status() {
+	
+	ps -ef |grep $prog |grep -v "grep" 
+
+	if [ $? != 0 ]; then
+		echo "Fibonacci service is stopped. "
+	else
+		echo "Fibonacci service is running. " 	
+	fi
+}
+
+case "$1" in
+
+start)
+  start
+  ;;
+stop)
+  stop
+  ;;
+reload|restart)
+  stop
+  start
+  ;;
+status)
+  status $SNAME
+  ;;
+*)
+  echo $"Usage: $0 {start|stop|restart|status}"
+  exit 1
+
+esac
+
+

@@ -1,0 +1,28 @@
+#!/bin/bash 
+
+configfile="/usr/local/bin/config.json"
+logfile="/var/log/fibonacci.log"
+
+#get the port used by Fibonacci deamon
+port=$(cat $configfile |awk -F "[port]" '/port/{print $0}' |awk -F "[\"]" '/port/{ print $4}')
+
+restartFibonaccid () {
+
+  local date=`date`
+  echo "ERROR: $date  fibonaccid is stopped, start it now ...." >> $logfile
+  service fibonaccid restart
+}
+
+#send a test request to fibonacci service
+#retrive the "msg" field in response
+
+url="localhost:"${port}"/api/v1/Fibonacci/2"
+result=$(curl ${url})
+msg=$(echo $result |awk -F "[,]" '{print $1}'|awk -F "[:]" '{print $2}')
+
+#if msg is not "ok", then need to start fibonaccid service
+if [ x"$msg" == x\"ok\" ]; then
+	echo "is running..."
+else
+   restartFibonaccid
+fi
