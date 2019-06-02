@@ -43,7 +43,7 @@ func getFibonacci (c *gin.Context){
 
 	fmt.Println(n)
 
-	var fiboarray = calculateFibonacci(n)
+	var fiboarray = CalculateFibonacci(n)
 
 	var buffer bytes.Buffer
 
@@ -60,7 +60,7 @@ func getFibonacci (c *gin.Context){
 }
 
 
-func calculateFibonacci (n int64) [] uint64 {
+func CalculateFibonacci (n int64) [] uint64 {
 
 	resultarray := make([]uint64, n)
 
