@@ -5,7 +5,7 @@ import (
 	"testing"
 )
 
-func TestcalculateFibonacci(t *testing.T) {
+func TestCalculateFibonacci(t *testing.T) {
 
 	array := calculateFibonacci(1)
 
